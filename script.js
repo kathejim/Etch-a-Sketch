@@ -17,3 +17,11 @@ for (let i = 0; i < 16; i++) {
     }
 }
 
+// Change the color of the "pixel" when passing the mouse over it.
+const pixelBoxes = document.querySelectorAll(".container-vertical");
+
+pixelBoxes.forEach(pixelBox => 
+    pixelBox.addEventListener("mouseenter", function(event) {
+   event.target.style.backgroundColor = "black";
+}));
+
