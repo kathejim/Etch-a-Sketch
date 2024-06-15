@@ -7,6 +7,7 @@
 
 .container {
     height: 100vh;
+    display: flex;
 }
 
 .container-grid {
@@ -28,4 +29,14 @@
 .container-vertical {
     flex-grow: 1;
     
+}
+
+.popup {
+    height: 280px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: brown;
+    position: absolute;
 }

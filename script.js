@@ -22,6 +22,6 @@ const pixelBoxes = document.querySelectorAll(".container-vertical");
 
 pixelBoxes.forEach(pixelBox => 
     pixelBox.addEventListener("mouseenter", function(event) {
-   event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = "black";
 }));
 
