@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const btnPopup = document.querySelector("button");
 const popupBox = document.querySelector(".popup-box");
 const input = document.querySelector("input");
+const btnCancel = document.querySelector("#cancel");
 let pixelNumber = 16;
 let pixelBoxes;
 
@@ -38,7 +39,7 @@ function deleteGrid() {
 function activateSketching() {
     pixelBoxes.forEach(pixelBox => 
     pixelBox.addEventListener("mouseenter", function(event) {
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = getRandomColor();
 }))};
 
 // Create a button that pops a box up to prompt the user for a grid size.
@@ -47,14 +48,13 @@ btnPopup.addEventListener("click", function() {
 });
 
 //Close the pop-up when pressing cancel button.
-const btnCancel = document.querySelector("#cancel");
-
 btnCancel.addEventListener("click", function() {
         popupBox.style.visibility = "hidden";
         pixelNumber = 0;
         console.log(pixelNumber);
 });
 
+//Validate that the input is a valid number when pressing Enter.
 input.addEventListener("keydown", validateNumber);
 
 //Create a function to validate that is a number <= 100;
@@ -73,6 +73,16 @@ function validateNumber(event) {
         }               
     };    
 };
+
+//Create a function to get a random color (RGB)
+
+function getRandomColor() {
+    let R = Math.floor(Math.random() * 256);
+    let G = Math.floor(Math.random() * 256);
+    let B = Math.floor(Math.random() * 256);  
+    return `rgb(${R}, ${G}, ${B})`;
+};
+
        
 
     

@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    border: 0.5px solid red;
+    burder: 0.5px solid red;
 }
 
 .container {
@@ -84,7 +84,6 @@
 }
 
 #popup-text {
-    /*! padding: 40px; */
     font-size: 20px;
 }
 
@@ -95,5 +94,4 @@ input {
 #cancel {
     margin-top: 60px;
     margin-left: auto;
-}
 }
