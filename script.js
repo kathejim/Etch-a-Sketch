@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const btnPopup = document.querySelector("button");
 const popupBox = document.querySelector(".popup-box");
+const input = document.querySelector("input");
 let pixelNumber = 16;
 let pixelBoxes;
 
@@ -43,28 +44,35 @@ function activateSketching() {
 // Create a button that pops a box up to prompt the user for a grid size.
 btnPopup.addEventListener("click", function() {
     popupBox.style.visibility = "visible";
-    const btnCancel = document.querySelector("#cancel");
-    btnCancel.addEventListener("click", function() {
+});
+
+//Close the pop-up when pressing cancel button.
+const btnCancel = document.querySelector("#cancel");
+
+btnCancel.addEventListener("click", function() {
         popupBox.style.visibility = "hidden";
         pixelNumber = 0;
         console.log(pixelNumber);
-    });
-    const input = document.querySelector("input");
-    input.addEventListener("input", function(event) {
-        pixelNumber = Number(event.target.value);
-        input.addEventListener("keydown", function(event){
-            if (event.key === "Enter") {
-                popupBox.style.visibility = "hidden";
-                deleteGrid();
-                createGrid();
-                console.log(pixelNumber);
-            };      
-        });
-
-        console.log(pixelNumber);
-        console.log(typeof(pixelNumber));
-    });
 });
 
+input.addEventListener("keydown", validateNumber);
 
+//Create a function to validate that is a number <= 100;
+function validateNumber(event) {
+    if (event.key === "Enter") {
+        pixelNumber = Number(event.target.value);
+        if (!isNaN(pixelNumber) && pixelNumber <= 100) {
+            deleteGrid();
+            createGrid();
+            console.log(pixelNumber);
+            console.log(typeof(pixelNumber));
+            popupBox.style.visibility = "hidden";
+        }
+        else {
+            alert("Invalid input. Please enter a number less than 100.");
+        }               
+    };    
+};
+       
 
+    
