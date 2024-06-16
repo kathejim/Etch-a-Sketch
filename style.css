@@ -8,13 +8,48 @@
 .container {
     height: 100vh;
     display: flex;
+    background-color: rgb(122, 88, 153);
+    /*! width: 100hv; */
 }
 
+.container-left {
+    
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    min-width: 0px;
+}
+
+#title {
+    font-size: 3vw;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    /*! margin-top: -80px; */
+    margin-bottom: 15px;    
+    min-width: 0px;
+}
+
+#new-canvas, #cancel {
+    padding: 10px 20px;
+    width: fit-content;
+    background-color: #2f2828;
+    color: whitesmoke;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+}
 .container-grid {
     display: flex;
     width: 100%;
-    height: 100%;
-    padding: 80px 80px 80px 360px;
+    /*! height: 100%; */
+    margin: 80px 80px 80px 80px;
+    background-color: whitesmoke;
+    border: 5px solid #201a26c4;
+    /*! flex-grow: 1; */
 }
 
 .container-horizontal {
@@ -32,14 +67,33 @@
 }
 
 .popup-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    gap: 10px;
     height: 280px;
     width: 400px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: brown;
+    background-color: bisque;
     position: absolute;
     visibility: hidden;
+   
 }
 
+#popup-text {
+    /*! padding: 40px; */
+    font-size: 20px;
+}
 
+input {
+    padding: 10px;
+}
+
+#cancel {
+    margin-top: 60px;
+    margin-left: auto;
+}
+}
