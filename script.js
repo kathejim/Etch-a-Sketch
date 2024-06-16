@@ -2,12 +2,13 @@ const container = document.querySelector(".container");
 const btnPopup = document.querySelector("button");
 const popupBox = document.querySelector(".popup-box");
 let pixelNumber = 16;
+let pixelBoxes;
 
 //Create a 16x16 grid of square divs and a function to change the grid size.
 const containerGrid = document.createElement("div");
 containerGrid.classList.add("container-grid");
-
 container.appendChild(containerGrid);
+
 function createGrid() {
     for (let i = 0; i < pixelNumber; i++) {
         const containerHorizontal = document.createElement("div");
@@ -20,16 +21,24 @@ function createGrid() {
             containerHorizontal.appendChild(containerVertical);
         }
     }
+    pixelBoxes = document.querySelectorAll(".container-vertical");
+    activateSketching();
 }
 createGrid();
 
-// Change the color of the "pixel" when passing the mouse over it.
-const pixelBoxes = document.querySelectorAll(".container-vertical");
+//Create a function to delete the Grid.
+function deleteGrid() {
+    const containerHorizontal = document.querySelectorAll(".container-horizontal");
+    containerHorizontal.forEach(container => container.remove());
+};
 
-pixelBoxes.forEach(pixelBox => 
+//Create a function to activate the event listener that 
+//changes the color of the "pixel" when passing the mouse over it.
+function activateSketching() {
+    pixelBoxes.forEach(pixelBox => 
     pixelBox.addEventListener("mouseenter", function(event) {
     event.target.style.backgroundColor = "black";
-}));
+}))};
 
 // Create a button that pops a box up to prompt the user for a grid size.
 btnPopup.addEventListener("click", function() {
@@ -45,8 +54,9 @@ btnPopup.addEventListener("click", function() {
         pixelNumber = Number(event.target.value);
         input.addEventListener("keydown", function(event){
             if (event.key === "Enter") {
-                createGrid();
                 popupBox.style.visibility = "hidden";
+                deleteGrid();
+                createGrid();
                 console.log(pixelNumber);
             };      
         });
