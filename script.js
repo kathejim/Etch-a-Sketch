@@ -1,4 +1,7 @@
 const container = document.querySelector(".container");
+const btnPopup = document.querySelector("button");
+const popupBox = document.querySelector(".popup-box");
+let pixelNumber = "";
 
 //Create a 16x16 grid of square divs.
 const containerGrid = document.createElement("div");
@@ -24,4 +27,28 @@ pixelBoxes.forEach(pixelBox =>
     pixelBox.addEventListener("mouseenter", function(event) {
     event.target.style.backgroundColor = "black";
 }));
+
+btnPopup.addEventListener("click", function() {
+    popupBox.style.visibility = "visible";
+    const btnCancel = document.querySelector("#cancel");
+    btnCancel.addEventListener("click", function() {
+        popupBox.style.visibility = "hidden";
+        pixelNumber = "";
+        console.log(pixelNumber);
+    });
+    const input = document.querySelector("input");
+    input.addEventListener("input", function(event) {
+        pixelNumber = event.target.value;
+        input.addEventListener("keydown", function(event){
+            if (event.key === "Enter") {
+                popupBox.style.visibility = "hidden";
+                console.log(pixelNumber);
+            };      
+        });
+
+        console.log(pixelNumber);
+    });
+});
+
+
 

@@ -31,7 +31,7 @@
     
 }
 
-.popup {
+.popup-box {
     height: 280px;
     width: 400px;
     top: 50%;
@@ -39,4 +39,7 @@
     transform: translate(-50%, -50%);
     background-color: brown;
     position: absolute;
+    visibility: hidden;
 }
+
+
