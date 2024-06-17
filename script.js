@@ -25,8 +25,7 @@ function createGrid() {
         }
     }
     pixelBoxes = document.querySelectorAll(".container-vertical");
-    pixelBoxes.forEach(container => container.style.backgroundColor = "rgba(255, 255, 255, 0.1)");
-    activateSketching();   
+     activateSketching();   
 }
 createGrid();
 
@@ -41,12 +40,7 @@ function deleteGrid() {
 function activateSketching() {
     pixelBoxes.forEach(pixelBox => 
     pixelBox.addEventListener("mouseenter", function(event) {
-        const square = event.target;
-        const squareColor = window.getComputedStyle(square).backgroundColor;
-        const alpha = getAlpha(squareColor);
-        event.target.style.backgroundColor = getRandomColor(alpha);
-        const newColor = event.target.style.backgroundColor;
-        console.log(newColor);
+        event.target.style.backgroundColor = getRandomColor();
     }))
 };
 
@@ -87,14 +81,5 @@ function getRandomColor(alpha) {
     let R = Math.floor(Math.random() * 256);
     let G = Math.floor(Math.random() * 256);
     let B = Math.floor(Math.random() * 256); 
-    alpha += 0.1;
-    alpha = alpha > 1 ? 1 : alpha;
-    return `rgba(${R}, ${G}, ${B}, ${alpha})`;
-};
-
-//Create a function to get the value of alpga from the backgroundColor
-function getAlpha(color) {
-    const parts = color.split(",");
-    const alpha = parseFloat(parts[3].trim().slice(0, -1));
-    return alpha;
+    return `rgba(${R}, ${G}, ${B})`;
 };
