@@ -6,6 +6,7 @@ const btnCancel = document.querySelector("#cancel");
 let pixelNumber = 16;
 let pixelBoxes;
 
+
 //Create a 16x16 grid of square divs and a function to change the grid size.
 const containerGrid = document.createElement("div");
 containerGrid.classList.add("container-grid");
@@ -24,7 +25,8 @@ function createGrid() {
         }
     }
     pixelBoxes = document.querySelectorAll(".container-vertical");
-    activateSketching();
+    pixelBoxes.forEach(container => container.style.backgroundColor = "rgba(255, 255, 255, 1)");
+    activateSketching();   
 }
 createGrid();
 
@@ -39,19 +41,26 @@ function deleteGrid() {
 function activateSketching() {
     pixelBoxes.forEach(pixelBox => 
     pixelBox.addEventListener("mouseenter", function(event) {
-    event.target.style.backgroundColor = getRandomColor();
-}))};
+        const square = event.target;
+        const squareColor = window.getComputedStyle(square).backgroundColor;
+        const alpha = getAlpha(squareColor);
+        event.target.style.backgroundColor = getRandomColor(alpha);
+        const newColor = event.target.style.backgroundColor;
+        console.log(newColor);
+    }))
+};
 
-// Create a button that pops a box up to prompt the user for a grid size.
+//Create a button that pops a box up to prompt the user for a grid size.
 btnPopup.addEventListener("click", function() {
+    input.value = "";
     popupBox.style.visibility = "visible";
+    input.focus();
 });
 
 //Close the pop-up when pressing cancel button.
 btnCancel.addEventListener("click", function() {
         popupBox.style.visibility = "hidden";
         pixelNumber = 0;
-        console.log(pixelNumber);
 });
 
 //Validate that the input is a valid number when pressing Enter.
@@ -64,25 +73,28 @@ function validateNumber(event) {
         if (!isNaN(pixelNumber) && pixelNumber <= 100) {
             deleteGrid();
             createGrid();
-            console.log(pixelNumber);
-            console.log(typeof(pixelNumber));
             popupBox.style.visibility = "hidden";
         }
         else {
             alert("Invalid input. Please enter a number less than 100.");
+            input.value = "";
         }               
     };    
 };
 
 //Create a function to get a random color (RGB)
-
-function getRandomColor() {
+function getRandomColor(alpha) {
     let R = Math.floor(Math.random() * 256);
     let G = Math.floor(Math.random() * 256);
-    let B = Math.floor(Math.random() * 256);  
-    return `rgb(${R}, ${G}, ${B})`;
+    let B = Math.floor(Math.random() * 256); 
+    alpha += 0.1;
+    alpha = alpha > 1 ? 1 : alpha;
+    return `rgba(${R}, ${G}, ${B}, ${alpha})`;
 };
 
-       
-
-    
+//Create a function to get the value of alpga from the backgroundColor
+function getAlpha(color) {
+    const parts = color.split(",");
+    const alpha = parseFloat(parts[3].trim().slice(0, -1));
+    return alpha;
+};
