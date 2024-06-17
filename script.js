@@ -25,7 +25,7 @@ function createGrid() {
         }
     }
     pixelBoxes = document.querySelectorAll(".container-vertical");
-    pixelBoxes.forEach(container => container.style.backgroundColor = "rgba(255, 255, 255, 1)");
+    pixelBoxes.forEach(container => container.style.backgroundColor = "rgba(255, 255, 255, 0.1)");
     activateSketching();   
 }
 createGrid();
